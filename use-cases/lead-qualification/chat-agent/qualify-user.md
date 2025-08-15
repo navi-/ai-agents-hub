@@ -14,22 +14,22 @@
 {
  "status": "data_collection_complete",
  "lead_profile": {
-  "first_name": { "value": "Jane", "source": "form" },
-  "last_name": { "value": "Doe", "source": "form" },
-  "work_email": { "value": "jane@doe.com", "source": "chat" },
-  "phone_number": { "value": null, "source": "form" },
-  "lead_source": { "value": null, "source": "chat"},
-  "channel": { "value": ["Voice"], "source": "chat" },
-  "operation_country": { "value": ["GB", "FR"], "source": "chat"},
-  "volume": { "value": "500000 units/month", "source": "chat" },
-  "reseller": { "value": false, "source": "chat" },
-  "purpose": { "value": "Alerts and Notifications", "source": "inferred" },
+  "first_name": { "value": "John", "source": "form" },
+  "last_name": { "value": "Appleseed", "source": "form" },
+  "work_email": { "value": "john@apple.com", "source": "form" },
+  "phone_number": { "value": "555-123-4567", "source": "chat" },
+  "lead_source": { "value": "Google search", "source": "chat"},
+  "channel": { "value": ["SMS"], "source": "inferred" },
+  "operation_country": { "value": ["US", "MX"], "source": "inferred"},
+  "volume": { "value": "200000 units/month", "source": "inferred" },
+  "user_business_model": { "value": "Direct Consumer", "source": "chat" },
+  "purpose": { "value": "2FA, OTP Verifications", "source": "inferred" },
   "detailed_requirement_enhanced": {
-   "value": "User needs info on APIs...",
+   "value": "Found via Google. Need to send about 200,000 login verification codes (SMS) to users in the United States and Mexico. For their own applications.",
    "source": "synthesis"
   }
  },
- "user_chat_conversation": "agent: ...\nuser: ...\n"
+ "user_chat_conversation": "agent: Thanks for your interest! Few final details. How did you find us?\nuser: I found you through a Google search.\nagent: Thanks for letting me know you found us on Google, John.\nagent: To get started, is there a phone number our team can use to contact you if needed?\nuser: 555-123-4567\nagent: Perfect. One last thing - will you be using Plivo's services for your own business's applications, or are you building a solution to resell to your own customers?\nuser: For our own apps.\nagent: Thank you for all the details. I have everything I need to connect you with the right expert. They will be in touch with you shortly!"
 }
 ```
 
@@ -131,7 +131,7 @@ After completing your analysis, your final and ONLY output must be the following
     "channel": ["Voice"],
     "operation_country": ["GB", "FR"],
     "volume": "500000 units/month",
-    "reseller": false,
+    "user_business_model": { "value": "Direct Consumer", "source": "chat" },
     "purpose": "Alerts and Notifications",
     "detailed_requirement_enhanced": "User needs info on APIs...",
     "user_chat_conversation": "agent: ...\nuser: ...\n",
@@ -146,7 +146,7 @@ After completing your analysis, your final and ONLY output must be the following
         "channel": "chat",
         "operation_country": "chat",
         "volume": "chat",
-        "reseller": "chat",
+        "user_business_model": "chat",
         "purpose": "inferred",
         "detailed_requirement_enhanced": "synthesis"
     }
@@ -187,7 +187,7 @@ This example demonstrates your exact thought process using the provided input da
     "channel": ["Voice"],
     "operation_country": ["GB", "FR"],
     "volume": "500000 units/month",
-    "reseller": false,
+    "user_business_model": "Direct Consumer",
     "purpose": "Alerts and Notifications",
     "detailed_requirement_enhanced": "User needs info on APIs...",
     "user_chat_conversation": "agent: ...\nuser: ...\n",
@@ -202,7 +202,7 @@ This example demonstrates your exact thought process using the provided input da
         "channel": "chat",
         "operation_country": "chat",
         "volume": "chat",
-        "reseller": "chat",
+        "user_business_model": "chat",
         "purpose": "inferred",
         "detailed_requirement_enhanced": "synthesis"
     }
