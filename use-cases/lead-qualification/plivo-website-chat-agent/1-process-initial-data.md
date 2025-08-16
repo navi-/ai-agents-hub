@@ -103,12 +103,10 @@ Create an empty `lead_profile` JSON object with all fields set to `null` values 
 
 ## Process `lead_source`
 
-- **Analyze `user_first_message`**: Determine if the user's message contains a plausible lead source.
-- **Plausible Sources**: "Google", "blog post", "LinkedIn", "colleague", "ChatGPT", "conference", "ad", etc.
-- **Invalid Sources**: Junk text ("asdf"), irrelevant questions ("what is your price?"), or non-sequiturs ("I need help").
+- **Analyze `user_first_message`**: Apply the validation logic defined in the `lead_source` field definition above, to determine if it contains a plausible lead source.
 - **Assignment**:
-  - If a plausible source is found, populate `lead_profile.lead_source` with the value and set `source: "chat"`.
-  - If the source is invalid or missing, set `lead_profile.lead_source` to `value: null` and `source: null`. This will trigger Node 2.
+  - If the user's message contains a valid lead source (passes Check 1 from the validation rules), populate `lead_profile.lead_source` with the value and set `source: "chat"` and `status: "FILLED"`.
+  - If the source is invalid or missing (fails validation), set `lead_profile.lead_source` to `value: null`, `source: null`, and `status: "MISSING"` or `"AMBIGUOUS"` as appropriate. This will trigger Node 2.
 
 ## Process `form_data`
 
@@ -140,7 +138,7 @@ Your final output must be a single JSON object matching this exact structure.
 
 ```json
 {
- "name": "output",
+ "name": "state",
  "lead_profile": {
     "first_name": { "value": "John", "source": "form", "status": "FILLED" },
     "last_name": { "value": "Doe", "source": "form", "status": "FILLED" },
@@ -170,7 +168,7 @@ Your final output must be a single JSON object matching this exact structure.
 **Correct Output:**
 ```json
 {
- "name": "output",
+ "name": "state",
  "lead_profile": {
     "first_name": { "value": "Jane Anne", "source": "form", "status": "FILLED" },
     "last_name": { "value": "Doe", "source": "form", "status": "FILLED" },
@@ -198,7 +196,7 @@ Your final output must be a single JSON object matching this exact structure.
 **Correct Output:**
 ```json
 {
- "name": "output",
+ "name": "state",
  "lead_profile": {
     "first_name": { "value": "Jack", "source": "form", "status": "FILLED" },
     "last_name": { "value": null, "source": "form", "status": "MISSING" },
@@ -226,7 +224,7 @@ Your final output must be a single JSON object matching this exact structure.
 **Correct Output:**
 ```json
 {
- "name": "output",
+ "name": "state",
  "lead_profile": {
     "first_name": { "value": null, "source": null, "status": "MISSING" },
     "last_name": { "value": null, "source": null, "status": "MISSING" },
@@ -239,4 +237,4 @@ Your final output must be a single JSON object matching this exact structure.
 
 # Exit Criteria
 
-Proceeds when the `user_first_message` and `form_data` have been processed and the output JSON object is created.
+Proceeds when the `user_first_message` and `form_data` have been processed and the `state` JSON object is created.
