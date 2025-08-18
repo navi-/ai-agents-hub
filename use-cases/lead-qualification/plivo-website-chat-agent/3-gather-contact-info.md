@@ -184,7 +184,7 @@ Your final output must be a single JSON object matching this exact structure.
   ```
 - **Resulting Conversation:**
   *(Turn 1: Agent identifies `first_name` is MISSING)*
-  > **agent:** Could I please get your full name to address you properly?
+  > **agent:** Could I please get your full name?
   > **user:** Jane Anne Doe
 
   *(Turn 2: Agent processes name, now identifies `work_email` is AMBIGUOUS)*
